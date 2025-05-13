@@ -94,9 +94,9 @@
     margin-top: 0.2rem;
   }
   .week-empty { background: #ebedf0; }
-  .week-level-1 { background: #f4e0c1; }
-  .week-level-2 { background: #e8c69d; }
-  .week-level-3 { background: #dcaa72; }
+  .week-level-1 { background: #fde894; }
+  .week-level-2 { background: #f3d661; }
+  .week-level-3 { background: #ffb62e; }
   .week-level-4 { background: #c4884c; }
   
   /* Heatmap wrapper */

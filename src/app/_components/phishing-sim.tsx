@@ -71,10 +71,10 @@ const PhishingSimulator: React.FC = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer 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',
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_GROQ_API_KEY}`,
           },
           body: JSON.stringify({
-            model: 'meta-llama/llama-4-scout-17b-16e-instruct',
+            model: 'llama-3.3-70b-versatile',
             messages: messagesArray,
           }),
         }
@@ -149,10 +149,10 @@ No long paragraphs, no "Kind regards."`
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer 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',
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_GROQ_API_KEY}`,
           },
           body: JSON.stringify({
-            model: 'meta-llama/llama-4-scout-17b-16e-instruct',
+            model: 'llama-3.3-70b-versatile',
             messages: initialApiMessages,
           }),
         }
@@ -301,7 +301,7 @@ No long paragraphs, no "Kind regards."`
       <div className="text-center mt-4">
         <button
           onClick={startSimulation}
-          className="text-sm font-bold text-[#5b4636] underline hover:text-yellow-700 transition"
+          className="text-sm font-bold text-[#ffffff] underline hover:text-yellow-700 transition"
         >
           Restart Simulation
         </button>

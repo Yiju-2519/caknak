@@ -4,6 +4,7 @@ import React from 'react';
 import DataVis from '~/app/_components/data-vis-ransomware';
 import TopNav from '~/components/TopNav';
 import Footer from '~/components/Footer';
+import StarryBackground from '~/components/StarryBackground';
 
 export default function DecodeDangerPage() {
   return (
@@ -18,6 +19,7 @@ export default function DecodeDangerPage() {
       }}
     >
       <TopNav />    
+      <StarryBackground />  
 
       {/* page content */}
       <section className="p-8">

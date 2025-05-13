@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import TopNav from '~/components/TopNav';
 import Footer from '~/components/Footer';
 import FlipCard from '~/components/FlipCard';
+import StarryBackground from "~/components/StarryBackground";
 
 /**
  * data structure for tipu cards
@@ -191,9 +192,11 @@ export default function DecodeDangerPage() {
 
       {/* spacer to push footer to bottom */}
       <div className="flex-grow" />
-
+      
       {/* page footer component */}
       <Footer />
+      <StarryBackground />
     </main>
+    
   );
 }

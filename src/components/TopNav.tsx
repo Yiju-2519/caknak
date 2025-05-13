@@ -20,7 +20,7 @@ export default function TopNav() {
       label: 'HOME',
       href: '/home',
       submenu: [
-        { label: 'Home', href: '/home', description: 'Welcome to caKnak' }
+        { label: 'Home', href: '/home', description: 'Welcome to CAKNAK' }
       ]
     },
     {
@@ -91,12 +91,28 @@ export default function TopNav() {
         </div>
 
         <Link href="/home" className="text-center">
-          <h1 className="text-6xl text-[#5b4636]" style={{ fontFamily: "'Great', cursive" }}>caKnak</h1>
+          <h1
+            className="text-6xl text-[#ff991c] font-bold"
+            style={{
+              fontFamily: "'Great', cursive",
+              textShadow: "0 0 10px rgba(255, 153, 28, 0.3), 0 0 20px rgba(255, 153, 28, 0.2), 0 0 30px rgba(255, 153, 28, 0.15)",
+              background: "linear-gradient(180deg, #ff991c 0%, #ffc067 50%, #ffd88a 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            CAKNAK
+          </h1>
         </Link>
 
-        <div className="mb-4"/>
+        <h6 className=" text-[#ffc067] font-semi-bold italic text-center" >Your trusted magical companion for digital safety </h6>
 
-        <div className="container mx-auto px-6 border-b border-[#5b4636]">
+        <div className="mb-4" />
+
+
+
+        <div className="container mx-auto px-6 border-b border-[#ffffff]">
           <nav className="flex justify-center space-x-24 relative">
             {navItems.map((item, index) => (
               <div
@@ -109,9 +125,8 @@ export default function TopNav() {
                 onMouseLeave={handleMenuItemLeave}
               >
                 <span
-                  className={`text-lg ${
-                    isActive(item.label) ? 'text-yellow-700' : 'text-[#5b4636]'
-                  } hover:text-yellow-700 cursor-default`}
+                  className={`text-lg ${isActive(item.label) ? 'text-[#ffc067]' : 'text-[#ffffff]'
+                    } hover:text-[#F7D65A] cursor-default`}
                   style={{ fontFamily: "var(--font-sniglet)" }}
                 >
                   {item.label}
@@ -132,7 +147,7 @@ export default function TopNav() {
             transition={{ duration: 0.3 }}
             className="absolute z-50 bg-[#fff7e6] shadow-lg rounded-lg px-4 py-4"
             style={{
-              top: "16.5%",
+              top: "19.3%",
               left: `${menuPositions[hoveredNavItem] ?? 0}px`,
               transform: "translateX(-50%)",
               marginTop: "0.5rem",
