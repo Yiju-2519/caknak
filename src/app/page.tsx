@@ -134,9 +134,9 @@ export default function LandingPage() {
       </div>
 
       {/* language selector in top right corner */}
-      <div className="absolute right-20 top-3 -mr-16">
+      {/* <div className="absolute right-20 top-3 -mr-16">
         <LanguageSwitcher />
-      </div>
+      </div> */}
 
       {/* skip button in bottom right that goes directly to home */}
       <motion.button
