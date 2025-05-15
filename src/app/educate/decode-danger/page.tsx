@@ -11,20 +11,22 @@ export default function DecodeDangerPage() {
     <main
       className="min-h-screen flex flex-col"
       style={{
-        backgroundImage: "url('/textures/parchment-texture.png')",
+        // backgroundImage: "url('/textures/parchment-texture.png')",
+        backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
         backgroundRepeat: 'repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         fontFamily: 'var(--font-sniglet)',
       }}
     >
-      <TopNav />    
-      <StarryBackground />  
+      <TopNav />
+      <StarryBackground />
 
       {/* page content */}
       <section className="p-8">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-[#ffc067] mb-2">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#ffc067] flex items-center justify-center gap-2">
+            <img src="/main/guardian_book.png" alt="Cyber Heroes" className="w-15 h-20 inline-block" />
             Decode the Danger
           </h1>
           <p className="text-lg text-[#ffc067] mb-6 max-w-xl mx-auto">
@@ -43,6 +45,8 @@ export default function DecodeDangerPage() {
       </section>
 
       <div className="flex-grow" />
+
+      <StarryBackground />
       <Footer />
     </main>
   );

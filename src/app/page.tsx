@@ -155,7 +155,7 @@ export default function LandingPage() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           color: "#e7d9bd",  // brown text color
-          fontFamily: "'Great', cursive",
+          // fontFamily: "'Great', cursive",
           fontSize: "24px",
         }}
         className="absolute bottom-10 right-10 z-50 px-6 py-3 rounded-xl shadow-md font-semibold text-lg border-4 border-[#c4b28d]"
@@ -273,7 +273,7 @@ export default function LandingPage() {
               backgroundSize: "cover",
               backgroundPosition: "center",
               color: "#ffc067",  // golden orange text color
-              fontFamily: "'Great', cursive",
+              // fontFamily: "'Great', cursive",
               fontSize: "28px",
             }}
             className="px-8 py-4 rounded-lg shadow-md font-semibold border-4 border-[#ffb041]"

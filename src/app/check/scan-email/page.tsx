@@ -236,14 +236,14 @@ export default function ScanEmailPage() {
                 <Image
                   src="/main/crystal_orb.png"
                   alt="Crystal Orb"
-                  width={300}
-                  height={300}
-                  className="opacity-90 drop-shadow-xl"
+                  width={250}
+                  height={250}
+                  className="mt-24 opacity-100 drop-shadow-xl"
                 />
 
                 {/* result text overlay on crystal ball */}
                 <motion.div
-                  className={`absolute left-1/2 top-4/11 transform -translate-x-1/2 -translate-y-1/2 text-center ${result === "safe" ? "text-green-700" : "text-red-700"
+                  className={`absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center ${result === "safe" ? "text-green-700" : "text-red-700"
                     } font-bold`}
                   style={{
                     fontSize: "2.5rem",
