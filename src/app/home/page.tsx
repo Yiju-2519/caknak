@@ -143,14 +143,14 @@ export default function Home() {
                     {/* Dotted decorative elements */}
                     <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-16 h-px">
                       <div className="flex justify-between">
-                        {[...Array(5)].map((_, i) => (
+                        {Array.from({ length: 5 }).map((_, i) => (
                           <div key={i} className="w-1 h-1 rounded-full bg-[#f3e9d2] opacity-50"></div>
                         ))}
                       </div>
                     </div>
                     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-px">
                       <div className="flex justify-between">
-                        {[...Array(5)].map((_, i) => (
+                        {Array.from({ length: 5 }).map((_, i) => (
                           <div key={i} className="w-1 h-1 rounded-full bg-[#f3e9d2] opacity-50"></div>
                         ))}
                       </div>
