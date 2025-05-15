@@ -28,7 +28,7 @@ const SwipeRight = () => {
             className={`swipe-button ${isAnimating ? 'animating' : ''}`}
             onClick={handleClick}
           >
-            Unlock 🢂
+            Unlock ➟
           </button>
         </div>
       ) : (

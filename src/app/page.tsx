@@ -149,16 +149,15 @@ export default function LandingPage() {
         }}
         transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
         style={{
-          // backgroundImage: "url('/textures/parchment-texture.png')",
-          backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
+          backgroundColor: "#ffc067",
           backgroundRepeat: "repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          color: "#e7d9bd",  // brown text color
-          // fontFamily: "'Great', cursive",
+          color: "#5b4636", 
+          fontFamily: "var(--font-sniglet)",
           fontSize: "24px",
         }}
-        className="absolute bottom-10 right-10 z-50 px-6 py-3 rounded-xl shadow-md font-semibold text-lg border-4 border-[#c4b28d]"
+        className="absolute bottom-10 right-10 z-50 px-6 py-3 rounded-xl shadow-md font-semibold text-lg border-4 border-[#5b4636]"
         onClick={() => (window.location.href = "/home")}
       >
         Skip
@@ -267,16 +266,15 @@ export default function LandingPage() {
             }}
             transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
             style={{
-              // backgroundImage: "url('/textures/parchment-texture.png')",
-              backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
+              backgroundColor: "#ffc067",
               backgroundRepeat: "repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",
-              color: "#ffc067",  // golden orange text color
-              // fontFamily: "'Great', cursive",
+              color: "#5b4636",
+              fontFamily: "var(--font-sniglet)",
               fontSize: "28px",
             }}
-            className="px-8 py-4 rounded-lg shadow-md font-semibold border-4 border-[#ffb041]"
+            className="px-8 py-4 rounded-lg shadow-md font-semibold border-4 border-[#5b4636]"
             onClick={handleEnterForest}
           >
             Enter CAKNAK

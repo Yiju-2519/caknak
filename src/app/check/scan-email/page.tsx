@@ -6,7 +6,6 @@ import Image from "next/image";
 import TopNav from "~/components/TopNav";
 import Footer from "~/components/Footer";
 import Link from "next/link";
-import { FaTimes } from "react-icons/fa";
 import { createClient } from '@supabase/supabase-js';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import StarryBackground from "~/components/StarryBackground";
