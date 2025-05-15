@@ -6,13 +6,15 @@ import FlipCard from "~/components/FlipCard";
 import Link from "next/link";
 import { FaEnvelopeOpenText, FaUserFriends, FaGift, FaSearch, FaShieldAlt, FaQuestionCircle, FaArrowUp } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import StarryBackground from "~/components/StarryBackground";
 
 export default function PhishingPreventionPage() {
     return (
         <main
             className="min-h-screen flex flex-col"
             style={{
-                backgroundImage: "url('/textures/parchment-texture.png')",
+                // backgroundImage: "url('/textures/parchment-texture.png')",
+                backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
                 backgroundRepeat: "repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -54,7 +56,7 @@ export default function PhishingPreventionPage() {
                 </div>
 
                 {/* Suspicious examples */}
-                <div className="flex flex-col items-center bg-[#f9f4e6] border-4 border-[#5b4636] rounded-2xl p-6 shadow-lg max-w-5xl w-full text-[#5b4636] mt-8">
+                <div className="flex flex-col items-center bg-[#f9f4e6] border-4 border-[#5b4636] rounded-2xl p-6 shadow-lg max-w-5xl w-full text-[#5b4636]">
                     <h2 className="text-3xl font-bold text-center gap-2 pb-6">
                         🚨 Watch Out For These Phishing Tricks!
                     </h2>
@@ -102,7 +104,7 @@ export default function PhishingPreventionPage() {
                 </div>
 
                 {/* Flip Cards */}
-                <div className="bg-[#fdf6e3] border-4 border-[#5b4636] rounded-2xl p-8 shadow-lg max-w-5xl w-full text-[#5b4636] space-y-8 mt-8">
+                <div className="bg-[#fdf6e3] border-4 border-[#5b4636] rounded-2xl p-8 shadow-lg max-w-5xl w-full text-[#5b4636] space-y-8">
                     <h2 className="text-3xl font-bold text-center text-[#5b4636] mb-6">
                         🪄 Flip Cards to Learn More!
                     </h2>
@@ -181,7 +183,7 @@ export default function PhishingPreventionPage() {
                     </div>
                 </div>
 
-                <div className="bg-[#fdf6e3] border-4 border-[#5b4636] rounded-2xl p-8 shadow-lg max-w-5xl w-full text-[#5b4636] space-y-8 mt-8">
+                <div className="bg-[#fdf6e3] border-4 border-[#5b4636] rounded-2xl p-8 shadow-lg max-w-5xl w-full text-[#5b4636] space-y-8">
                     <h2 className="text-3xl font-bold text-center text-[#5b4636] mb-6">🛡️ Safety Tips to Remember</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="flex gap-4">
@@ -215,7 +217,7 @@ export default function PhishingPreventionPage() {
                     </div>
                 </div>
 
-                <div className="bg-[#fdf6e3] border-4 border-[#5b4636] rounded-2xl p-8 shadow-lg max-w-5xl w-full text-[#5b4636] space-y-8 mt-8">
+                <div className="bg-[#fdf6e3] border-4 border-[#5b4636] rounded-2xl p-8 shadow-lg max-w-5xl w-full text-[#5b4636] space-y-8">
                     <h2 className="text-3xl font-bold text-[#5b4636] text-center">🔍 How to Spot Phishing</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -291,6 +293,7 @@ export default function PhishingPreventionPage() {
                     <FaArrowUp className="text-white text-2xl" />
                 </button>
             </div>
+            <StarryBackground />
             <Footer />
         </main>
     );

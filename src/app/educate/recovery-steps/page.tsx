@@ -23,11 +23,11 @@ export default function RecoverySteps() {
 
             <div className="flex flex-col items-center justify-center flex-grow px-4 py-8 space-y-8">
                 {/* Title */}
-                <h1 className="text-4xl md:text-5xl font-bold text-[#ffc067] flex items-center justify-center gap-2">
+                <h1 className="text-4xl md:text-5xl font-bold text-[#ffc067] flex items-center justify-center">
                     <img src="/main/guardian_book.png" alt="Cyber Heroes" className="w-15 h-20 inline-block" />
                     Protect Your Digital Identity
                 </h1>
-                <p className="text-lg text-[#ffc067] mb-8 max-w-xl mx-auto">
+                <p className="text-2xl text-[#ffc067] mb-8 max-w-xl mx-auto">
                     Follow these magical steps to secure your account!
                 </p>
 

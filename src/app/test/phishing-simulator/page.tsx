@@ -47,7 +47,8 @@ export default function DecodeDangerPage() {
     <main
       className="min-h-screen flex flex-col"
       style={{
-        backgroundImage: "url('/textures/parchment-texture.png')",
+        // backgroundImage: "url('/textures/parchment-texture.png')",
+        backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
         backgroundRepeat: 'repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',

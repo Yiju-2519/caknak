@@ -72,8 +72,8 @@ const StarryBackground = () => {
               backgroundColor: "#ffffc5",
             }}
             animate={{ 
-              scale: [1, 1.3, 1],
-              opacity: [star.opacity, star.opacity * 1, star.opacity]
+              scale: [1, 3, 1],
+              opacity: [star.opacity, star.opacity * 0.8, star.opacity]
             }}
             transition={{
               duration: star.duration,

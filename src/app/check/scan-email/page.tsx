@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import TopNav from "~/components/TopNav";
@@ -164,6 +164,17 @@ export default function ScanEmailPage() {
     }
   };
 
+  // Auto-hide crystal ball after 2 seconds
+useEffect(() => {
+  if (showCrystal) {
+    const timer = setTimeout(() => {
+      setShowCrystal(false);
+    }, 2000); // 2 seconds
+
+    return () => clearTimeout(timer); 
+  }
+}, [showCrystal]);
+
   return (
     <main
       className="min-h-screen flex flex-col"
@@ -255,14 +266,14 @@ export default function ScanEmailPage() {
                   {result === "safe" ? "SAFE" : "RISKY"}
                 </motion.div>
 
-                {/* close button for crystal ball modal */}
+                {/* close button for crystal ball modal
                 <button
                   onClick={() => setShowCrystal(false)}
                   className="absolute top-12 right-12 text-[#5b4636] bg-white/70 rounded-full p-1 border-4 border-[#5b4636] hover:bg-yellow-100 shadow"
                   style={{ pointerEvents: "auto" }}
                 >
                   <FaTimes />
-                </button>
+                </button> */}
               </div>
             </motion.div>
           )}
