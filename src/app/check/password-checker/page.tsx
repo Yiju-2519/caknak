@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import TopNav from "~/components/TopNav";
 import Footer from "~/components/Footer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import StarryBackground from "~/components/StarryBackground";
 
 const calculateRandomness = (entropy: number) => {
     // Convert entropy to a percentage (0-100)
@@ -80,7 +81,8 @@ export default function PasswordCheckPage() {
         <main
             className="min-h-screen flex flex-col"
             style={{
-                backgroundImage: "url('/textures/parchment-texture.png')",
+                // backgroundImage: "url('/textures/parchment-texture.png')",
+                backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
                 backgroundRepeat: "repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -90,10 +92,10 @@ export default function PasswordCheckPage() {
             <TopNav />
 
             <div className="flex flex-col items-center justify-center flex-grow text-center p-6">
-                <h1 className="text-4xl text-[#5b4636] font-extrabold mb-4">
+                <h1 className="text-4xl text-[#ffffc5] font-extrabold mb-4">
                     Check Your Password
                 </h1>
-                <p className="text-[#5b4636] max-w-lg mb-6">Enter a password to check its strength and get improvement tips.</p>
+                <p className="text-[#ffffc5] max-w-lg mb-6">Enter a password to check its strength and get improvement tips.</p>
 
                 <div className="relative w-96">
                     <input
@@ -109,7 +111,7 @@ export default function PasswordCheckPage() {
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-[#5b4636] text-xl focus:outline-none"
                         aria-label="Toggle password visibility"
                     >
-                        {showPassword ? <FaEye /> : <FaEyeSlash />} 
+                        {showPassword ? <FaEye /> : <FaEyeSlash />}
                     </button>
                 </div>
 
@@ -117,7 +119,7 @@ export default function PasswordCheckPage() {
                     whileHover={{ scale: 1.05, y: -3, boxShadow: "0 0 20px #fde68a" }}
                     disabled={loading}
                     onClick={handleCheck}
-                    className="px-8 py-3 mt-4 rounded-xl font-bold text-xl text-[#5b4636] border-4 border-[#5b4636] bg-[url('/textures/parchment-texture.png')] bg-cover"
+                    className="mt-4 bg-[#ffc067] text-[#5b4636] border-4 border-[#5b4636] px-8 py-3 rounded-lg text-xl font-bold hover:bg-[#e8b15e] transition-colors duration-200 transform hover:scale-105"
                 >
                     {loading ? "Checking..." : "Check"}
                 </motion.button>
@@ -198,6 +200,7 @@ export default function PasswordCheckPage() {
                 )}
             </div>
 
+            <StarryBackground />
             <Footer />
         </main>
     );

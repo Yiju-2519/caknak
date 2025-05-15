@@ -14,16 +14,16 @@ import StarryBackground from "~/components/StarryBackground";
 export default function ScanEmailPage() {
   // email input field value
   const [email, setEmail] = useState("");
-  
+
   // whether scan is currently in progress
   const [loading, setLoading] = useState(false);
-  
+
   // scan result - null when no result yet
   const [result, setResult] = useState<"safe" | "risky" | null>(null);
-  
+
   // whether to display the crystal ball animation
   const [showCrystal, setShowCrystal] = useState(false);
-  
+
   // track if result came from api or cached database
   const [resultSource, setResultSource] = useState<"api" | "database" | null>(null);
 
@@ -74,13 +74,13 @@ export default function ScanEmailPage() {
         const result = data[0] as DatabaseBreachCheck;
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-        
+
         // check if result is recent enough to use
         if (new Date(result.created_at) > thirtyDaysAgo) {
           return result.is_breached ? "risky" : "safe";
         }
       }
-      
+
       return null;
     } catch (error) {
       console.error("Database check error:", error);
@@ -105,10 +105,10 @@ export default function ScanEmailPage() {
         const response = await fetch(
           `/api/check-email?email=${encodeURIComponent(email)}`
         );
-        
+
         if (response.ok) {
           const data = (await response.json()) as CheckEmailResponse;
-          
+
           // store fresh result in database for when api fails
           await supabase
             .from("hibp_breach_check")
@@ -130,7 +130,7 @@ export default function ScanEmailPage() {
       if (!apiSuccessful) {
         console.log("API failed, checking database...");
         const dbResult = await checkDatabaseForResults(email_hash);
-        
+
         if (dbResult) {
           // found cached result
           setResult(dbResult);
@@ -139,7 +139,7 @@ export default function ScanEmailPage() {
           // no cached data - assume safe as conservative default
           setResult("safe");
           setResultSource("database");
-          
+
           // save this default assumption for future reference
           await supabase
             .from("hibp_breach_check")
@@ -150,7 +150,7 @@ export default function ScanEmailPage() {
             });
         }
       }
-      
+
       // show crystal ball animation regardless of result source
       setShowCrystal(true);
     } catch (error) {
@@ -168,7 +168,8 @@ export default function ScanEmailPage() {
     <main
       className="min-h-screen flex flex-col"
       style={{
-        backgroundImage: "url('/textures/parchment-texture.png')",
+        // backgroundImage: "url('/textures/parchment-texture.png')",
+        backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
         backgroundRepeat: "repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -176,47 +177,47 @@ export default function ScanEmailPage() {
       }}
     >
       <TopNav />
-      
+
 
       <div className="flex flex-col items-center justify-center flex-grow text-center p-6">
 
-        {/* page header section */}
-        <h1 className="text-4xl text-[#ffc067] font-extrabold mb-4">
-          Check Your Email Security
-        </h1>
-        <p className="text-[#ffc067] max-w-lg text-base md:text-lg mb-8">
-          Enter your email to scan for hidden risks and data breaches.
-        </p>
-
-        {/* email input form */}
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email..."
-          className="w-80 px-4 py-3 rounded-lg border-4 border-[#5b4636] text-[#5b4636] bg-white/80 shadow-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 mb-4"
-        />
-
-        {/* privacy and security disclaimers */}
-        <div className="mb-4 text-sm text-[#ffffc5]">
-          <p>
-            Your data is <span className="text-xl text-yellow-700">secured</span> with encryption.
-            <Link href="https://haveibeenpwned.com/Privacy" target="_blank">
-              <span className="text-lg ml-1 underline text-yellow-700 hover:text-yellow-800">Learn More</span>
-            </Link>
+          {/* page header section */}
+          <h1 className="text-4xl text-[#ffffc5] font-extrabold mb-4">
+            Check Your Email Security
+          </h1>
+          <p className="text-[#ffffc5] max-w-lg text-base md:text-lg mb-8">
+            Enter your email to scan for hidden risks and data breaches.
           </p>
-          <p>Secure • Private • <span className="text-xl text-yellow-700">We don&apos;t store emails</span></p>
-        </div>
 
-        {/* scan trigger button with hover animation */}
-        <motion.button
-          whileHover={{ scale: 1.05, y: -3, boxShadow: "0 0 20px #fde68a" }}
-          onClick={handleScan}
-          disabled={loading}
-          className="px-8 py-3 rounded-xl font-bold text-xl text-[#ffffc5] border-4 border-[#ffc067] bg-[url('/textures/parchment-texture.png')] bg-cover"
-        >
-          {loading ? "Scanning..." : "Scan"}
-        </motion.button>
+          {/* email input form */}
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email..."
+            className="w-80 px-4 py-3 rounded-lg border-4 border-[#5b4636] text-[#5b4636] bg-white/80 shadow-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 mb-4"
+          />
+
+          {/* privacy and security disclaimers */}
+          <div className="mb-4 text-sm text-[#ffffc5]">
+            <p>
+              Your data is <span className="text-xl text-yellow-700">secured</span> with encryption.
+              <Link href="https://haveibeenpwned.com/Privacy" target="_blank">
+                <span className="text-lg ml-1 underline text-yellow-700 hover:text-yellow-800">Learn More</span>
+              </Link>
+            </p>
+            <p>Secure • Private • <span className="text-xl text-yellow-700">We don&apos;t store emails</span></p>
+          </div>
+
+          {/* scan trigger button with hover animation */}
+          <motion.button
+            whileHover={{ scale: 1.05, y: -3, boxShadow: "0 0 20px #fde68a" }}
+            onClick={handleScan}
+            disabled={loading}
+            className="bg-[#ffc067] text-[#5b4636] border-4 border-[#5b4636] px-8 py-3 rounded-lg text-xl font-bold hover:bg-[#e8b15e] transition-colors duration-200 transform hover:scale-105"
+            >
+            {loading ? "Scanning..." : "Scan"}
+          </motion.button>
 
         {/* animated crystal ball that shows scan results */}
         <AnimatePresence>
@@ -239,7 +240,7 @@ export default function ScanEmailPage() {
                   height={300}
                   className="opacity-90 drop-shadow-xl"
                 />
-                
+
                 {/* result text overlay on crystal ball */}
                 <motion.div
                   className={`absolute left-1/2 top-4/11 transform -translate-x-1/2 -translate-y-1/2 text-center ${result === "safe" ? "text-green-700" : "text-red-700"
@@ -295,16 +296,16 @@ export default function ScanEmailPage() {
                 </ul>
               </>
             )}
-            
+
             {/*  result source */}
             <p className="text-xs text-gray-600 mt-4 border-t pt-2">
-              
+
               Result from: {resultSource === "api" ? "HaveIBeenPawned API" : "Previous check"}  {/*  Live or db*/}
             </p>
           </motion.div>
         )}
       </div>
-        <StarryBackground />
+      <StarryBackground />
       <Footer />
     </main>
   );

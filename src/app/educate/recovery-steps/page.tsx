@@ -4,13 +4,15 @@ import TopNav from "~/components/TopNav";
 import Footer from "~/components/Footer";
 import { FaCheckCircle, FaTimesCircle, FaUniversity, FaCreditCard, FaWallet, FaShoppingCart, FaUserSecret, FaExclamationCircle, FaArrowUp } from "react-icons/fa";
 import Link from "next/link";
+import StarryBackground from "~/components/StarryBackground";
 
 export default function RecoverySteps() {
     return (
         <main
             className="min-h-screen flex flex-col"
             style={{
-                backgroundImage: "url('/textures/parchment-texture.png')",
+                // backgroundImage: "url('/textures/parchment-texture.png')",
+                backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
                 backgroundRepeat: "repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -21,10 +23,10 @@ export default function RecoverySteps() {
 
             <div className="flex flex-col items-center justify-center flex-grow px-4 py-8 space-y-8">
                 {/* Title */}
-                <h1 className="text-4xl font-extrabold text-[#5b4636] mb-2">
+                <h1 className="text-4xl font-extrabold text-[#ffc067] mb-2">
                     Protect Your Digital Identity
                 </h1>
-                <p className="text-lg text-[#5b4636] mb-8 max-w-xl mx-auto">
+                <p className="text-lg text-[#ffc067] mb-8 max-w-xl mx-auto">
                     Follow these magical steps to secure your account!
                 </p>
 
@@ -174,6 +176,8 @@ export default function RecoverySteps() {
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 <FaArrowUp className="text-white text-2xl" />
             </button>
+
+            <StarryBackground />
             <Footer />
         </main>
     );

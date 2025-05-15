@@ -24,10 +24,10 @@ export default function PhishingPreventionPage() {
             <div className="flex flex-col items-center px-4 py-8 space-y-10 flex-grow">
                 {/* Title */}
                 <div className="text-center space-y-2">
-                    <h1 className="text-4xl md:text-5xl font-bold text-[#5b4636] flex items-center justify-center gap-2">
+                    <h1 className="text-4xl md:text-5xl font-bold text-[#ffc067] flex items-center justify-center gap-2">
                         <img src="/main/guardian_book.png" alt="Cyber Heroes" className="w-15 h-20 inline-block" /> Phishing Prevention for Super Cyber Heroes!
                     </h1>
-                    <div className="text-[#5b4636] text-center text-lg">
+                    <div className="text-[#ffc067] text-center text-lg">
                         Join us on a cyber adventure to learn how to protect yourself from digital tricksters called &quot;phishers&quot;!
                     </div>
                 </div>

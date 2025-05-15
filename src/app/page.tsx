@@ -149,15 +149,16 @@ export default function LandingPage() {
         }}
         transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
         style={{
-          backgroundImage: "url('/textures/parchment-texture.png')",
+          // backgroundImage: "url('/textures/parchment-texture.png')",
+          backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
           backgroundRepeat: "repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          color: "#5b4636",  // brown text color
+          color: "#e7d9bd",  // brown text color
           fontFamily: "'Great', cursive",
           fontSize: "24px",
         }}
-        className="absolute bottom-10 right-10 z-50 px-6 py-3 rounded-xl shadow-md font-semibold text-lg border-4 border-[#5b4636]"
+        className="absolute bottom-10 right-10 z-50 px-6 py-3 rounded-xl shadow-md font-semibold text-lg border-4 border-[#c4b28d]"
         onClick={() => (window.location.href = "/home")}
       >
         Skip
@@ -176,7 +177,7 @@ export default function LandingPage() {
           {/* dark background for better text visibility */}
           <div 
             className="bg-[#2A2A2A] bg-opacity-75 px-8 py-6 rounded-lg backdrop-blur-sm border border-yellow-700"
-            style={{ boxShadow: "0 0 15px rgba(255, 215, 0, 0.3)" }}
+            style={{ backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)" }}
           >
             {/* main title with pulsing glow effect */}
             <motion.div
@@ -266,7 +267,8 @@ export default function LandingPage() {
             }}
             transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
             style={{
-              backgroundImage: "url('/textures/parchment-texture.png')",
+              // backgroundImage: "url('/textures/parchment-texture.png')",
+              backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
               backgroundRepeat: "repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -274,7 +276,7 @@ export default function LandingPage() {
               fontFamily: "'Great', cursive",
               fontSize: "28px",
             }}
-            className="px-8 py-4 rounded-lg shadow-md font-semibold border-4 border-[#5b4636]"
+            className="px-8 py-4 rounded-lg shadow-md font-semibold border-4 border-[#ffb041]"
             onClick={handleEnterForest}
           >
             Enter CAKNAK
@@ -330,7 +332,8 @@ export default function LandingPage() {
         {enteringCastle && (
           <motion.div
             style={{
-              backgroundImage: "url('/textures/parchment-texture.png')",
+              // backgroundImage: "url('/textures/parchment-texture.png')",
+              backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
               backgroundRepeat: "repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",

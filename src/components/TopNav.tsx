@@ -86,15 +86,15 @@ export default function TopNav() {
   return (
     <main>
       <header className="pt-8 relative">
-        <div className="absolute right-8 top-4">
+        {/* <div className="absolute right-8 top-4">
           <LanguageSwitcher />
-        </div>
+        </div> */}
 
         <Link href="/home" className="text-center">
           <h1
             className="text-6xl text-[#ff991c] font-bold"
             style={{
-              fontFamily: "'Great', cursive",
+              // fontFamily: "'Great', cursive",
               textShadow: "0 0 10px rgba(255, 153, 28, 0.3), 0 0 20px rgba(255, 153, 28, 0.2), 0 0 30px rgba(255, 153, 28, 0.15)",
               background: "linear-gradient(180deg, #ff991c 0%, #ffc067 50%, #ffd88a 100%)",
               WebkitBackgroundClip: "text",
@@ -110,9 +110,7 @@ export default function TopNav() {
 
         <div className="mb-4" />
 
-
-
-        <div className="container mx-auto px-6 border-b border-[#ffffff]">
+        <div className="container mx-auto px-6 border-b border-[#e7d9bd]">
           <nav className="flex justify-center space-x-24 relative">
             {navItems.map((item, index) => (
               <div
@@ -125,7 +123,7 @@ export default function TopNav() {
                 onMouseLeave={handleMenuItemLeave}
               >
                 <span
-                  className={`text-lg ${isActive(item.label) ? 'text-[#ffc067]' : 'text-[#ffffff]'
+                  className={`text-lg ${isActive(item.label) ? 'text-[#ffc067]' : 'text-[#e7d9bd]'
                     } hover:text-[#F7D65A] cursor-default`}
                   style={{ fontFamily: "var(--font-sniglet)" }}
                 >

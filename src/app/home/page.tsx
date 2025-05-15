@@ -87,7 +87,8 @@ export default function Home() {
     <main
       className="min-h-screen flex flex-col relative"
       style={{
-        backgroundImage: "url('/textures/parchment-texture.png')",
+        // backgroundImage: "url('/textures/parchment-texture.png')",
+        backgroundImage: "linear-gradient(to bottom, #000000, #1a1a1a)",
         backgroundRepeat: "repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -117,17 +118,57 @@ export default function Home() {
               >
                 {/* Front side of card */}
                 <div
-                  className="absolute w-full h-full flex flex-col justify-center items-center text-center rounded-xl shadow-lg border-4 border-[#f3e9d2] bg-[url('/textures/rune-circle-bg.png')] bg-cover bg-center overflow-hidden"
+                  className="absolute w-full h-full flex flex-col justify-center items-center text-center rounded-xl shadow-lg bg-[#1b0e37] bg-cover bg-center overflow-hidden border-4 border-[#f3e9d2] hover:scale-105 transition-transform duration-200 hover:border-[#ffc067] hover:shadow-[0_0_20px_#ffc067]"
                   style={{
                     backfaceVisibility: "hidden",  // hides front when flipped
                     pointerEvents: flippedCard === section.id ? "none" : "auto",
                   }}
                   onClick={() => handleCardClick(section.id)}
                 >
+                  {/* Tarot-style decorative border elements */}
+                  <div className="absolute inset-0 border-[#f3e9d2] opacity-40 pointer-events-none">
+                    {/* Inner decorative frame */}
+                    <div className="absolute inset-4 border border-[#f3e9d2] rounded-lg"></div>
+                    
+                    {/* Ornamental corners */}
+                    <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-[#f3e9d2] rounded-tl-md"></div>
+                    <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-[#f3e9d2] rounded-tr-md"></div>
+                    <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-[#f3e9d2] rounded-bl-md"></div>
+                    <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-[#f3e9d2] rounded-br-md"></div>
+                    
+                    {/* Decorative center lines */}
+                    <div className="absolute top-1/2 left-3 right-3 h-px bg-[#f3e9d2] opacity-30 transform -translate-y-16"></div>
+                    <div className="absolute top-1/2 left-3 right-3 h-px bg-[#f3e9d2] opacity-30 transform translate-y-16"></div>
+                    
+                    {/* Dotted decorative elements */}
+                    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-16 h-px">
+                      <div className="flex justify-between">
+                        {[...Array(5)].map((_, i) => (
+                          <div key={i} className="w-1 h-1 rounded-full bg-[#f3e9d2] opacity-50"></div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-px">
+                      <div className="flex justify-between">
+                        {[...Array(5)].map((_, i) => (
+                          <div key={i} className="w-1 h-1 rounded-full bg-[#f3e9d2] opacity-50"></div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Mystical symbols in background */}
+                  <div className="absolute inset-0 pointer-events-none opacity-10">
+                    <div className="absolute top-1/4 left-1/4 text-xs text-[#f3e9d2]">✧</div>
+                    <div className="absolute top-1/4 right-1/4 text-xs text-[#f3e9d2]">⁎</div>
+                    <div className="absolute bottom-1/4 left-1/4 text-xs text-[#f3e9d2]">⁂</div>
+                    <div className="absolute bottom-1/4 right-1/4 text-xs text-[#f3e9d2]">✧</div>
+                  </div>
+                  
                   {/* title at top of card */}
                   <h3
-                    className="absolute top-4 w-full text-center text-5xl font-bold"
-                    style={{ color: "#ffc067" }}
+                    className="absolute top-4 w-full text-center text-4xl font-bold"
+                    style={{ color: "#e7d9bd" }}
                   >
                     {section.title}
                   </h3>
@@ -148,17 +189,66 @@ export default function Home() {
                   {/* title at bottom of card (mirrors the top) */}
                   <h3
                     className="absolute bottom-4 w-full text-center text-4xl font-bold"
-                    style={{ color: "#ffc067" }}
+                    style={{ color: "#e7d9bd" }}
                   >
                     {section.title}
                   </h3>
+
+                  {/* Decorative pentagram in the background */}
+                  <svg 
+                    className="absolute opacity-10 pointer-events-none"
+                    width="180" 
+                    height="180" 
+                    viewBox="0 0 100 100" 
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)'
+                    }}
+                  >
+                    <path 
+                      d="M50 0 L61 35 L97 35 L68 57 L79 90 L50 70 L21 90 L32 57 L3 35 L39 35 Z" 
+                      fill="none" 
+                      stroke="rgba(243, 233, 210, 0.5)" 
+                      strokeWidth="0.5">
+                    </path>
+                    <circle 
+                      cx="50" 
+                      cy="50" 
+                      r="45" 
+                      fill="none" 
+                      stroke="rgba(243, 233, 210, 0.3)" 
+                      strokeWidth="0.5">
+                    </circle>
+                    <circle 
+                      cx="50" 
+                      cy="50" 
+                      r="35" 
+                      fill="none" 
+                      stroke="rgba(243, 233, 210, 0.2)" 
+                      strokeWidth="0.5">
+                    </circle>
+                  </svg>
                 </div>
 
                 {/* back side of card with submenu options */}
                 <div
-                  className="absolute w-full h-full flex flex-col justify-center items-center text-center rounded-xl shadow-lg bg-[#f3e9d2] border-4 border-[#5b4636] transform rotate-y-180 overflow-hidden px-4"
+                  className="absolute w-full h-full flex flex-col justify-center items-center text-center rounded-xl shadow-lg bg-[#f3e9d2] transform rotate-y-180 overflow-hidden px-4"
                   style={{ backfaceVisibility: "hidden" }}  // hides back when front is visible
                 >
+                  {/* Decorative elements for back of card */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {/* Inner frame */}
+                    <div className="absolute inset-4 border border-[#5b4636] opacity-40 rounded-lg"></div>
+                    
+                    {/* Ornamental corners */}
+                    <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-[#5b4636] opacity-60 rounded-tl-md"></div>
+                    <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-[#5b4636] opacity-60 rounded-tr-md"></div>
+                    <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-[#5b4636] opacity-60 rounded-bl-md"></div>
+                    <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-[#5b4636] opacity-60 rounded-br-md"></div>
+                  </div>
+                  
                   {/* list of clickable submenu items */}
                   {section.submenu.map((item, idx) => (
                     <button
