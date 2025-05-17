@@ -5,6 +5,13 @@ import QuizResultCardGood from '~/app/_components/quiz/quiz-result-good';
 import QuizResultCardBetter from '~/app/_components/quiz/quiz-result-better';
 import Question1 from '~/app/_components/quiz/quiz-question-1';
 import Question2 from '~/app/_components/quiz/quiz-question-2';
+import Question3 from '~/app/_components/quiz/quiz-question-3';
+import Question4 from '~/app/_components/quiz/quiz-question-4';
+import Question5 from '~/app/_components/quiz/quiz-question-5';
+import Question6 from '~/app/_components/quiz/quiz-question-6';
+import Question7 from '~/app/_components/quiz/quiz-question-7';
+import Question8 from '~/app/_components/quiz/quiz-question-8';
+ 
 
 // props expected by each question component - standardizes the interface
 interface QuestionComponent {
@@ -57,31 +64,107 @@ export default function QuizFlow({ onComplete, onRestart }: QuizFlowProps) {
   // max questions to display per quiz attempt
   const TOTAL_QUESTIONS = 5;
   
-  // full question bank - in production this might come from a database
+  // full question bank 8 sofar
   const allQuestions: QuestionData[] = [
     { 
       id: 1, 
       component: Question1, 
       questionId: 'q1', 
       questionText: "A call from the bank asks you to confirm your account number. You...",
-      correctAnswerId: 1,  // assumes choice 1 is "hang up immediately" or similar
+      correctAnswerId: 2,  
       explanation: {
         correct: "Excellent! Banks should never call asking for your account details. Hanging up immediately protects your information.",
         incorrect: "Be careful! Real banks never ask for account numbers over the phone. Always hang up and call the bank directly using the number on your card."
       }
     },
-    // { 
-    //   id: 2, 
-    //   component: Question2, 
-    //   questionId: 'q2', 
-    //   questionText: "You receive an email saying you have won a prize. You...",
-    //   correctAnswerId: 2,  
-    //   explanation: {
-    //     correct: "Smart choice! Prize emails are often phishing attempts. Always verify through official channels.",
-    //     incorrect: "This is likely a scam. Prize notifications by email are usually fraudulent. Delete the email and never provide personal information."
-    //   }
-    // },
-  ];
+    { 
+      id: 2, 
+      component: Question2, 
+      questionId: 'q2', 
+      questionText: "You receive an email saying you have won a prize. You...",
+      correctAnswerId: 2,  
+      explanation: {
+        correct: "Smart choice! Prize emails are often phishing attempts. Always verify through official channels.",
+        incorrect: "This is likely a scam. Prize notifications by email are usually fraudulent. Delete the email and never provide personal information."
+      }
+    },
+
+    { 
+      id: 3, 
+      component: Question3, 
+      questionId: 'q3', 
+      questionText: "A friend sends a link asking for urgent help. You...",
+      correctAnswerId: 1,  
+      explanation: {
+        correct: "Smart move! Always verify before clicking on a link, even if it seems urgent. Scammers often exploit urgency to trick people.",
+        incorrect: "Not a good idea. Urgency can be a red flag in phishing attempts. Always verify before clicking."
+      }
+    },
+
+    { 
+      id: 4, 
+      component: Question4, 
+      questionId: 'q4', 
+      questionText: "You find a USB drive labeled 'Confidential' in your classroom. You...",
+      correctAnswerId: 2,  
+      explanation: {
+        correct: "Good call! Handing it to your teacher is the safest way to handle potentially dangerous USB drives.",
+        incorrect: "Risky move. Unknown USB drives can contain malware. Always report them to an adult who may know better."
+
+      }
+    },
+
+    { 
+      id: 5, 
+      component: Question5, 
+      questionId: 'q5', 
+      questionText: "You get a text asking for your password to reset your Instagram account. You...",
+      correctAnswerId: 1,  
+      explanation: {
+        correct: "Smart decision. Legitimate companies will never ask for your password via text. Ignore and report the message.",
+        incorrect: "Bad move. Sharing your password can lead to unauthorized access. Never share your password with anyone."
+
+      }
+    },
+
+    { 
+      id: 6, 
+      component: Question6, 
+      questionId: 'q6', 
+      questionText: "You are about to download free software from a sketchy website. You...",
+      correctAnswerId: 1,  
+      explanation:   {
+            correct: "Well done! Downloading software from unverified sites can expose your device to malware. Always verify the source.",
+            incorrect: "Not a safe choice. Sketchy websites often host malicious software. Always verify before downloading."
+        },
+      },
+
+      { 
+      id: 7, 
+      component: Question7, 
+      questionId: 'q7', 
+      questionText: "Your social media account shows a login from another country. You...",
+      correctAnswerId: 1,  
+      explanation:     {
+            correct: "Good job! Unrecognized logins could mean your account is compromised. Changing the password helps secure it.",
+            incorrect: "Ignoring it is risky. Suspicious logins could indicate a breach. Take action immediately."
+          },
+
+      },
+
+      { 
+      id: 8, 
+      component: Question8, 
+      questionId: 'q8', 
+      questionText: "A classmate texts and asks for access to a your homework file. You....",
+      correctAnswerId: 2,  
+      explanation:   {
+    correct: "Nice thinking! Confirming their identity prevents unauthorized access to sensitive files.",
+    incorrect: "Not safe. Sharing sensitive files without verification can lead to unauthorized access."
+        },
+      },
+
+   ];
   
   // run setup function on component mount
   useEffect(() => {
@@ -154,7 +237,7 @@ export default function QuizFlow({ onComplete, onRestart }: QuizFlowProps) {
       setHasAnswered(false);
       setCurrentAnswer(null);
     } else {
-      // Quiz completed - show results
+      // quiz completed - show results
       setShowResults(true);
       onComplete(); // Notify parent component
     }
@@ -182,7 +265,7 @@ export default function QuizFlow({ onComplete, onRestart }: QuizFlowProps) {
           {/* conditional result card based on performance threshold */}
           {percentage > 50 ? <QuizResultCardGood /> : <QuizResultCardBetter />}
           
-          {/* restart quiz functionality */}
+          {/* restart quiz  */}
           <button
             onClick={() => {
               initializeQuiz();
@@ -196,7 +279,7 @@ export default function QuizFlow({ onComplete, onRestart }: QuizFlowProps) {
       );
     }
     
-    // safety check - shouldn't reach this state
+    // safety check  shouldn't reach this state
     if (currentQuestionIndex >= selectedQuestions.length) {
       return (
         <div className="text-center">
@@ -262,10 +345,10 @@ export default function QuizFlow({ onComplete, onRestart }: QuizFlowProps) {
       {/* progress indicator - hidden during loading and results */}
       {selectedQuestions.length > 0 && !showResults && (
         <div className="max-w-md mx-auto mb-8">
-          <div className="flex justify-between text-[#ffc067] text-sm mb-2">
+          <div className="flex justify-between text-[#5b4636] text-sm mb-2">
             <span>Question {currentQuestionIndex + 1} of {totalQuestionsToShow}</span>
           </div>
-          {/* animated progress bar with smooth transitions */}
+          {/* animated progress bar with transitions */}
           <div className="w-full bg-[#5b4636] rounded-full h-3 overflow-hidden">
             <div 
               className="h-full bg-[#ffc067] rounded-full transition-all duration-500 ease-out"

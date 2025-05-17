@@ -23,18 +23,20 @@ export default function Question1({
   questionId, 
   questionText = "Q1",
   choices = [
+
     {
       id: 1,
-      label: "📞 hang up immediately",
-      icon: "/quiz/q1_right_quiz.svg",
+      label: "💳Provide the details",
+      icon: "/quiz/Q1B.png",
 
     },
     {
       id: 2,
-      label: "💳 provide the details",
-      icon: "/quiz/q1_wrong_quiz.svg",
+      label: "📞Hang up immediately",
+      icon: "/quiz/Q1A.png",
 
-    }
+    },
+
   ],
   onAnswer 
 }: Question1Props) {
@@ -84,7 +86,7 @@ export default function Question1({
             onClick={() => handleChoice(choice1.id)}
           >
             <div className="h-full flex flex-col items-center justify-center px-6">
-              <div className="w-45 h-45 mb-0">
+              <div className="w-55 h-55 mb-5">
                 <Image src={choice1.icon} alt={choice1.label} width={360} height={360} />
               </div>
             </div>
@@ -96,7 +98,7 @@ export default function Question1({
             onClick={() => handleChoice(choice2.id)}
           >
             <div className="h-full flex flex-col items-center justify-center px-6">
-              <div className="w-45 h-45 mt-4">
+              <div className="w-55 h-55 mt-4">
                 <Image src={choice2.icon} alt={choice2.label} width={360} height={360} />
               </div>
             </div>
