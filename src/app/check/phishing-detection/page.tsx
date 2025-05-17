@@ -6,6 +6,7 @@ import { AlertTriangle, CheckCircle2, CheckCircle, XCircle } from "lucide-react"
 import TopNav from "~/components/TopNav";
 import Footer from "~/components/Footer";
 import StarryBackground from "~/components/StarryBackground";
+import { FaBook } from "react-icons/fa";
 
 const SAFETY_RECOMMENDATIONS = [
   "Verify sender identity before clicking links",
@@ -390,8 +391,8 @@ export default function PhishingDetection() {
                         <div className="font-semibold text-[#5b4636] mb-1">Phishing Defense Basics</div>
                         <div className="text-[#5b4636] text-sm">Improve your protective knowledge with our comprehensive resources</div>
                       </div>
-                      <button className="mt-3 md:mt-0 px-5 py-2 bg-[#a58a64] text-white rounded-lg font-semibold hover:bg-[#8c7350] transition">
-                        Phishing Prevention Guide
+                      <button className="mt-3 md:mt-0 px-5 py-2 bg-[#4F959D] text-white rounded-lg font-semibold shadow hover:bg-[#a68a64] hover:scale-105 transition">
+                        <FaBook className="inline-block" /> &nbsp; Phishing Prevention Guide
                       </button>
                     </div>
                   </div>

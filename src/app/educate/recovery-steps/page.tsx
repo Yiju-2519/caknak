@@ -173,9 +173,9 @@ export default function RecoverySteps() {
                     </Link>
                 </div>
             </div>
-            <button className="fixed bottom-4 right-4 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition"
+            <button className="fixed bottom-4 right-4 bg-white text-white p-2 rounded-full shadow-lg hover:bg-gray-300 transition"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                <FaArrowUp className="text-white text-2xl" />
+                <FaArrowUp className="text-gray-800 text-2xl" />
             </button>
 
             <StarryBackground />

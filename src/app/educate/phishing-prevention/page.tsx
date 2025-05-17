@@ -284,13 +284,13 @@ export default function PhishingPreventionPage() {
                     </Link>
                     <Link
                         href="/test/phishing-simulator"
-                        className="mt-4  bg-[#4F959D] text-[#fff] text-lg font-bold rounded-2xl px-6 py-3 shadow hover:scale-105 hover:bg-[#a68a64] transition">
+                        className="mt-4 bg-[#4F959D] text-[#fff] text-lg font-bold rounded-2xl px-6 py-3 shadow hover:scale-105 hover:bg-[#a68a64] transition">
                         <FaQuestionCircle className="inline-block" /> &nbsp; Click here to Phishing Simulator
                     </Link>
                 </div>
-                <button className="fixed bottom-4 right-4 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition"
+                <button className="fixed bottom-4 right-4 bg-white text-white p-2 rounded-full shadow-lg hover:bg-gray-300 transition"
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                    <FaArrowUp className="text-white text-2xl" />
+                    <FaArrowUp className="text-gray-800 text-2xl" />
                 </button>
             </div>
             <StarryBackground />

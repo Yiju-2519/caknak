@@ -343,12 +343,12 @@ export default function LandingPage() {
           >
             {/* spinning magical circle in background */}
             <motion.img
-              src="/textures/rune-circle.png"
+              src="/textures/rune-circle-removebg.png"
               alt="Magic Circle"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5, rotate: 360 }}
+              animate={{ opacity: 0.8, rotate: 360 }}
               transition={{
-                duration: 30,  // slow continuous rotation
+                duration: 20,  // slow continuous rotation
                 repeat: Infinity,
                 ease: "linear",
               }}

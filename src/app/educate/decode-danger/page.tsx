@@ -5,6 +5,7 @@ import DataVis from '~/app/_components/data-vis-ransomware';
 import TopNav from '~/components/TopNav';
 import Footer from '~/components/Footer';
 import StarryBackground from '~/components/StarryBackground';
+import { FaArrowUp } from 'react-icons/fa';
 
 export default function DecodeDangerPage() {
   return (
@@ -45,6 +46,11 @@ export default function DecodeDangerPage() {
       </section>
 
       <div className="flex-grow" />
+
+      <button className="fixed bottom-4 right-4 bg-white text-white p-2 rounded-full shadow-lg hover:bg-gray-300 transition"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <FaArrowUp className="text-gray-800 text-2xl" />
+      </button>
 
       <StarryBackground />
       <Footer />
