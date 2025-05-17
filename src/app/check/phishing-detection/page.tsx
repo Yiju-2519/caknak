@@ -389,7 +389,8 @@ export default function PhishingDetection() {
                     <div className="bg-white/80 border-2 border-[#b6b6b6] rounded-lg p-4 flex flex-col md:flex-row md:items-center md:justify-between">
                       <div>
                         <div className="font-semibold text-[#5b4636] mb-1">Phishing Defense Basics</div>
-                        <div className="text-[#5b4636] text-sm">Improve your protective knowledge with our comprehensive resources</div>
+                        <div className="text-[#5b4636] text-sm">Improve your protective knowledge</div>
+                        <div className="text-[#5b4636] text-sm">with our comprehensive resources</div>
                       </div>
                       <button className="mt-3 md:mt-0 px-5 py-2 bg-[#4F959D] text-white rounded-lg font-semibold shadow hover:bg-[#a68a64] hover:scale-105 transition">
                         <FaBook className="inline-block" /> &nbsp; Phishing Prevention Guide
