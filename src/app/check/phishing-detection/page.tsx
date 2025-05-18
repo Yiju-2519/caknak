@@ -255,8 +255,10 @@ export default function PhishingDetection() {
                                                                 terms.forEach((term) => {
                                                                     if (!term) return;
                                                                     const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                                                                    const regex = new RegExp(`(${safeTerm})`, 'gi');
-                                                                    highlighted = highlighted.replace(regex, '<span class="text-gray-500 font-semibold bg-yellow-100">$1</span>');
+                                                                    const regex = new RegExp(`(?<!\\w)${safeTerm}(?!\\w)`, 'gi');
+                                                                    highlighted = highlighted.replace(regex, (match) =>
+                                                                        `<span class="text-gray-500 font-semibold bg-yellow-200">${match}</span>`
+                                                                      );
                                                                 });
                                                                 return <span dangerouslySetInnerHTML={{ __html: highlighted }} />;
                                                             })()}

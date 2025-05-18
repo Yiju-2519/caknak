@@ -13,7 +13,10 @@ function analyzeRisks(emailText: string) {
   
   // Detect urgency language
   const urgencyKeywords = ['urgent', 'immediately', 'asap', 'act now', 'verify now', 'limited time', 'important notice'];
-  const foundUrgency = urgencyKeywords.filter(kw => emailText.toLowerCase().includes(kw));
+  const foundUrgency = urgencyKeywords.filter(kw => {
+    const regex = new RegExp(`\\b${kw}\\b`, 'i');
+    return regex.test(emailText);
+  });
   if (foundUrgency.length > 0) {
     risks.push(`Uses urgency language: ${foundUrgency.join(', ')}`);
   }
@@ -27,7 +30,10 @@ function analyzeRisks(emailText: string) {
   
   // Detect personalization
   const personalizationMarkers = ['dear', 'hello', 'hi', 'user', 'customer', 'subscriber'];
-  const foundPersonalization = personalizationMarkers.filter(word => emailText.toLowerCase().includes(word));
+  const foundPersonalization = personalizationMarkers.filter(word => {
+    const regex = new RegExp(`\\b${word}\\b`, 'i');
+    return regex.test(emailText);
+  });
   if (foundPersonalization.length > 0) {
     risks.push(`Generic or fake personalization: ${foundPersonalization.join(', ')}`);
   }

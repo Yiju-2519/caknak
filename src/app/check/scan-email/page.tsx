@@ -13,6 +13,7 @@ import StarryBackground from "~/components/StarryBackground";
 export default function ScanEmailPage() {
   // email input field value
   const [email, setEmail] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   // whether scan is currently in progress
   const [loading, setLoading] = useState(false);
@@ -41,6 +42,10 @@ export default function ScanEmailPage() {
   // structure returned from hibp api endpoint
   interface CheckEmailResponse {
     breached: boolean;
+  }
+
+  function isValidEmail(email: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
   // converts email to sha-256 hash for privacy-preserving database storage
@@ -89,7 +94,12 @@ export default function ScanEmailPage() {
 
   // main function that handles the email security scan
   const handleScan = async () => {
-    if (!email) return;
+    if (!email.trim() || !isValidEmail(email)) {
+      setError("Please enter a valid email");
+      return;
+    }
+
+    setError(null);
     setLoading(true);
     setResult(null);
     setResultSource(null);
@@ -164,15 +174,15 @@ export default function ScanEmailPage() {
   };
 
   // Auto-hide crystal ball after 2 seconds
-useEffect(() => {
-  if (showCrystal) {
-    const timer = setTimeout(() => {
-      setShowCrystal(false);
-    }, 2000); // 2 seconds
+  useEffect(() => {
+    if (showCrystal) {
+      const timer = setTimeout(() => {
+        setShowCrystal(false);
+      }, 2000); // 2 seconds
 
-    return () => clearTimeout(timer); 
-  }
-}, [showCrystal]);
+      return () => clearTimeout(timer);
+    }
+  }, [showCrystal]);
 
   return (
     <main
@@ -191,43 +201,55 @@ useEffect(() => {
 
       <div className="flex flex-col items-center justify-center flex-grow text-center p-6">
 
-          {/* page header section */}
-          <h1 className="text-4xl text-[#ffffc5] font-extrabold mb-4">
-            Check Your Email Security
-          </h1>
-          <p className="text-[#ffffc5] max-w-lg text-base md:text-lg mb-8">
-            Enter your email to scan for hidden risks and data breaches.
+        {/* page header section */}
+        <h1 className="text-4xl text-[#ffffc5] font-extrabold mb-4">
+          Check Your Email Security
+        </h1>
+        <p className="text-[#ffffc5] max-w-lg text-base md:text-lg mb-8">
+          Enter your email to scan for hidden risks and data breaches.
+        </p>
+
+        {/* email input form */}
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            if (error) setError(null);
+          }}
+          placeholder="Enter your email..."
+          className={`w-80 px-4 py-3 rounded-lg border-4 ${error ? 'border-red-600' : 'border-[#5b4636]'
+            } text-[#5b4636] bg-white/80 shadow-lg placeholder-gray-400 focus:outline-none focus:ring-2 ${error ? 'focus:ring-red-500' : 'focus:ring-yellow-500'
+            } mb-2`}
+        />
+
+        {/* email format error message */}
+        {error && (
+          <p className="text-red-600 font-semibold text-sm mb-4">
+            {error}
           </p>
+        )}
 
-          {/* email input form */}
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email..."
-            className="w-80 px-4 py-3 rounded-lg border-4 border-[#5b4636] text-[#5b4636] bg-white/80 shadow-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 mb-4"
-          />
+        {/* privacy and security disclaimers */}
+        <div className="mb-4 text-sm text-[#ffffc5]">
+          <p>
+            Your data is <span className="text-xl text-yellow-700">secured</span> with encryption.
+            <Link href="https://haveibeenpwned.com/Privacy" target="_blank">
+              <span className="text-lg ml-1 underline text-yellow-700 hover:text-yellow-800">Learn More</span>
+            </Link>
+          </p>
+          <p>Secure • Private • <span className="text-xl text-yellow-700">We don&apos;t store emails</span></p>
+        </div>
 
-          {/* privacy and security disclaimers */}
-          <div className="mb-4 text-sm text-[#ffffc5]">
-            <p>
-              Your data is <span className="text-xl text-yellow-700">secured</span> with encryption.
-              <Link href="https://haveibeenpwned.com/Privacy" target="_blank">
-                <span className="text-lg ml-1 underline text-yellow-700 hover:text-yellow-800">Learn More</span>
-              </Link>
-            </p>
-            <p>Secure • Private • <span className="text-xl text-yellow-700">We don&apos;t store emails</span></p>
-          </div>
-
-          {/* scan trigger button with hover animation */}
-          <motion.button
-            whileHover={{ scale: 1.05, y: -3, boxShadow: "0 0 20px #fde68a" }}
-            onClick={handleScan}
-            disabled={loading}
-            className="bg-[#ffc067] text-[#5b4636] border-4 border-[#5b4636] px-8 py-3 rounded-lg text-xl font-bold hover:bg-[#e8b15e] transition-colors duration-200 transform hover:scale-105"
-            >
-            {loading ? "Scanning..." : "Scan"}
-          </motion.button>
+        {/* scan trigger button with hover animation */}
+        <motion.button
+          whileHover={{ scale: 1.05, y: -3, boxShadow: "0 0 20px #fde68a" }}
+          onClick={handleScan}
+          disabled={loading}
+          className="bg-[#ffc067] text-[#5b4636] border-4 border-[#5b4636] px-8 py-3 rounded-lg text-xl font-bold hover:bg-[#e8b15e] transition-colors duration-200 transform hover:scale-105"
+        >
+          {loading ? "Scanning..." : "Scan"}
+        </motion.button>
 
         {/* animated crystal ball that shows scan results */}
         <AnimatePresence>
