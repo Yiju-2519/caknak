@@ -15,6 +15,7 @@ const calculateRandomness = (entropy: number) => {
 };
 
 const getStrengthText = (strength: number) => {
+    if (strength === -1) return "Weak Password 🔴 (Common Password)";
     if (strength === 0) return "Weak Password 🔴";
     if (strength === 1) return "Medium Password 🟠";
     return "Strong Password 🟢";
@@ -175,6 +176,9 @@ export default function PasswordCheckPage() {
                             <div className="mt-4 text-[#5b4636] text-lg bg-white/80 border-2 border-[#5b4636] rounded-lg p-4 flex flex-col items-center">
                                 <p className="font-bold mb-3 text-xl text-center">Tips to improve:</p>
                                 <div className="w-full flex flex-wrap justify-center gap-x-12 gap-y-3">
+                                    {result.strength === -1 && (
+                                        <span className="flex items-center"><span className="mr-2">•</span>Avoid using <span className="font-bold text-yellow-700 mx-1">common passwords</span></span>
+                                    )}
                                     {result.features.num_upper === 0 && (
                                         <span className="flex items-center"><span className="mr-2">•</span>Add <span className="font-bold text-yellow-700 mx-1">uppercase</span> letters</span>
                                     )}

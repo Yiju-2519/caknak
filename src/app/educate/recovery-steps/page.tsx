@@ -2,7 +2,8 @@
 
 import TopNav from "~/components/TopNav";
 import Footer from "~/components/Footer";
-import { FaCheckCircle, FaTimesCircle, FaUniversity, FaCreditCard, FaWallet, FaShoppingCart, FaUserSecret, FaExclamationCircle, FaArrowUp } from "react-icons/fa";
+import { FaCheckCircle, FaTimesCircle, FaUniversity, FaCreditCard, FaWallet, FaShoppingCart, FaUserSecret, FaExclamationCircle, FaArrowUp, FaBook } from "react-icons/fa";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 import Link from "next/link";
 import StarryBackground from "~/components/StarryBackground";
 
@@ -68,7 +69,7 @@ export default function RecoverySteps() {
                     </div>
                     <Link href="/check/password-checker" className="flex justify-center">
                         <button className="bg-[#4F959D] text-[#fff] text-lg font-bold rounded-2xl px-6 py-3 shadow hover:scale-105 hover:bg-[#a68a64] transition">
-                            Click Here to Verify Your Password
+                            <FaMagnifyingGlass className="inline-block" /> &nbsp; Click Here to Verify Your Password
                         </button>
                     </Link>
                 </div>
@@ -168,7 +169,7 @@ export default function RecoverySteps() {
                     </div>
                     <Link href="/educate/phishing-prevention" className="flex justify-center">
                         <button className="bg-[#4F959D] text-[#fff] text-lg font-bold rounded-2xl px-6 py-3 shadow hover:scale-105 hover:bg-[#a68a64] transition">
-                            Learn More About Phishing Prevention
+                            <FaBook className="inline-block" /> &nbsp; Learn More About Phishing Prevention
                         </button>
                     </Link>
                 </div>
