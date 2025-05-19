@@ -1,0 +1,26 @@
+.earthquake_container {
+    text-align: center;
+    padding: 20px;
+}
+
+.pulse_animation {
+    font-weight: bold;
+    font-size: 50px;
+    animation: pulse 2s infinite;
+    color: #ff0000;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+} 
