@@ -85,7 +85,7 @@ export default function RecoverySteps() {
                         <li>Use authenticator apps over SMS for better security</li>
                         <li>Recommended apps: Google Authenticator, Authy</li>
                     </ul>
-                    <div className="flex flex-col space-y-2 text-lg font-bold text-[#5b4636] pt-2"> 2FA Setup Examples of Common Services:</div>
+                    <div className="flex flex-col space-y-2 text-lg font-bold text-[#5b4636] pt-2"> Examples of Common Scenarios Requiring 2FA Setup:</div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
                         {/* Maybank2u */}
                         <button className="flex items-center gap-2 w-full px-4 py-3 rounded-xl border-4 border-yellow-300 bg-yellow-100 text-yellow-800 font-semibold shadow">
