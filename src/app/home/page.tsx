@@ -30,8 +30,8 @@ export default function Home() {
           description: "Tools to identify phishing attempts" 
         },
         { 
-          label: "🔍 Password Checker", 
-          href: "/check/password-checker", 
+          label: "🔍 Password Security", 
+          href: "/check/password-security", 
           description: "Check the strength of your password" 
         },
       ],

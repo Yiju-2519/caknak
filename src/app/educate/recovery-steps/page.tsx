@@ -67,7 +67,7 @@ export default function RecoverySteps() {
                             <span className="font-bold">myname1990</span>
                         </div>
                     </div>
-                    <Link href="/check/password-checker" className="flex justify-center">
+                    <Link href="/check/password-security" className="flex justify-center">
                         <button className="bg-[#4F959D] text-[#fff] text-lg font-bold rounded-2xl px-6 py-3 shadow hover:scale-105 hover:bg-[#a68a64] transition">
                             <FaMagnifyingGlass className="inline-block" /> &nbsp; Click Here to Verify Your Password
                         </button>

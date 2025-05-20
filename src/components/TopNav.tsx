@@ -29,7 +29,7 @@ export default function TopNav() {
       submenu: [
         { label: 'Scan Email', href: '/check/scan-email', description: 'Verify if your email has been breached' },
         { label: 'Phishing Detection', href: '/check/phishing-detection', description: 'Tools to identify phishing attempts' },
-        { label: 'Password Checker', href: '/check/password-checker', description: 'Check the strength of your password' }
+        { label: 'Password Security', href: '/check/password-security', description: 'Check the strength of your password' }
       ]
     },
     {
