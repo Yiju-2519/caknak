@@ -1,4 +1,3 @@
-
 import React, {useRef, useEffect} from 'react';
 import "./PasswordBox.css";
 
@@ -57,13 +56,14 @@ function PasswordBox(props, ref) {
             </div>
             <textarea 
                 id="pswdbox"
-                className="pswdbox"
+                className="pswdbox placeholder-gray-400"
                 ref={ref} 
                 value={pswd} 
                 onChange={handleChange} 
                 rows={1}
                 style={{resize: 'none', width: "100%", overflowY: 'hidden'}}
                 spellCheck="false"
+                placeholder="Enter any letter/number to start"
             />
             {/* <div>{caretPos.current && `${caretPos.current.start}, ${caretPos.current.end}`}</div> */}
         </>

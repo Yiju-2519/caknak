@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
@@ -55,7 +54,7 @@ export default function Home(){
         setPswd(txt);
         checkRules(txt);
     }
-
+    
     //check rules loop
     function checkRules(txt) {
         if(ruleState.length===0) return;
@@ -130,9 +129,26 @@ export default function Home(){
     return (
         <>
         <div className={"h-[420px] overflow-y-auto bg-[#f9f4e6] " + styles.container}>
-            
+                        
             <PasswordBox pswd={pswd} setPswd={setPswdAndCheckRules} ref={pswdBoxRef}/>
             <div className="text-[#0A0F0D] text-lg font-semibold mb-4">Level: {max_unlocked_rules.current}</div>
+            {max_unlocked_rules.current === 0 && (
+              <div className="mb-6 px-4 py-3 bg-[#fffbe6] rounded-lg text-[#5b4636] text-base shadow border-2 border-yellow-300">
+                <div className="flex items-center justify-center mb-2 w-full">
+                    <span className="text-2xl mr-2">🕹️</span>
+                    <span className="font-extrabold text-lg tracking-wide underline">Password Game Guide</span>
+                </div>
+                <ul className="list-none pl-0 space-y-1">
+                  <li>⭐ <b>15 Levels:</b> Each level is a new password challenge.</li>
+                  <li>🔓 <b>Rule 7:</b> Reach this for a super-strong password!</li>
+                  <li>💡 <b>Tip:</b> You don't have to finish all levels, every rule completed makes your password stronger.</li>
+                  <li>🏆 <b>Goal:</b> Reach the highest level and become a Password Master!</li>
+                </ul>
+                <div className="mt-2 italic text-yellow-700 text-sm">
+                  Every level teaches you a real-world password skill. Good luck!
+                </div>
+              </div>
+            )}
             <div ref={aaParent}>
                 {allSolved && <RuleBox 
                     heading={"Congratulations!"} 
