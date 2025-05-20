@@ -174,54 +174,90 @@ No long paragraphs, no "Kind regards."`
   };
 
   // handle when user sends a message - core interaction function
-  const handleSendMessage = async (): Promise<void> => {
+const handleSendMessage = async (): Promise<void> => {
+    // wxit early if message is empty or just whitespace
     if (!userInput.trim()) return;
 
+    // add the user message to the chat display
+    // keeps the visual conversation history updated
     setMessages(prevMessages => [...prevMessages, { sender: 'You', text: userInput }]);
+
+    // create updated api message array with the new user message
+    // this gets sent to the backend api for processing
     const newApiMessages = [...apiMessages, { role: 'user', content: userInput }];
+
+    // save the updated message history for future context
+    // helps maintain conversation thread for the ai
     setApiMessages(newApiMessages);
+
+    // show loading spinner while waiting for response
+    // gives user feedback that something's happening
     setIsLoading(true);
+
+    // clear input field after sending
+    // makes room for next message
     setUserInput('');
 
+    // track how many back-and-forth exchanges happened
+    // needed for special behavior at exchange #4
     const newExchangeCount = exchangeCount + 1;
     setExchangeCount(newExchangeCount);
-
-    try {
-      const response = await simulateScam(newApiMessages);
-
-      if (response.startsWith('Sorry, there was an error') || !response.trim()) {
-        setMessages(prev => [...prev, { sender: 'System', text: response }]);
-        setIsLoading(false);
-        return;
-      }
-
-      setApiMessages(prevMessages => [
-        ...prevMessages,
-        { role: 'assistant', content: response },
-      ]);
-
-      if (newExchangeCount === 4) {
-        const isRealityCheck = response.includes('REALITY CHECK');
-        if (isRealityCheck) {
-          const isGoodResponse = isPositiveRealityCheck(response);
-          setMessages(prev => [
-            ...prev,
-            { sender: '', text: response, isReality: true, isGood: isGoodResponse },
-          ]);
-        } else {
-          setMessages(prev => [...prev, { sender: '', text: response }]);
-        }
-        return;
-      }
-
-      setMessages(prev => [...prev, { sender: '', text: response }]);
-    } catch (error: unknown) {
-      const msg = error instanceof Error ? error.message : 'Unknown error';
-      setMessages(prev => [{ sender: 'System', text: 'Error sending message: ' + msg }]);
-    } finally {
+  
+  // gotta check if there's actual text before sending anything
+  // otherwise just bail out early and save everyone some time
+  try {
+    // grab response from the api by passing all the messages
+    // this talks to the backend and gets the ai response
+    const response = await simulateScam(newApiMessages);
+    
+    // if got back an error message or empty string
+    // just show that error message and stop loading
+    if (response.startsWith('Sorry, there was an error') || !response.trim()) {
+      setMessages(prev => [...prev, { sender: 'System', text: response }]);
       setIsLoading(false);
+      return;
     }
-  };
+    
+    // add the bot response to the api message history
+    // keeps track of the full conversation for context
+    setApiMessages(prevMessages => [
+      ...prevMessages,
+      { role: 'assistant', content: response },
+    ]);
+    
+    // special handling for the fourth exchange
+    // need to check if this contains a reality check message
+    if (newExchangeCount === 4) {
+      const isRealityCheck = response.includes('REALITY CHECK');
+      if (isRealityCheck) {
+        // figure out if this was a good or bad reality check
+        // and store that info with the message
+        const isGoodResponse = isPositiveRealityCheck(response);
+        setMessages(prev => [
+          ...prev,
+          { sender: '', text: response, isReality: true, isGood: isGoodResponse },
+        ]);
+      } else {
+        // just a regular message at exchange 4, nothing special
+        setMessages(prev => [...prev, { sender: '', text: response }]);
+      }
+      return;
+    }
+    
+    // standard case - just add the response to the messages list
+    // this updates what shows in the chat interface
+    setMessages(prev => [...prev, { sender: '', text: response }]);
+  } catch (error: unknown) {
+    // something went wrong talking to the api
+    // show what happened in the chat so the user knows
+    const msg = error instanceof Error ? error.message : 'Unknown error';
+    setMessages(prev => [{ sender: 'System', text: 'Error sending message: ' + msg }]);
+  } finally {
+    // always stop the loading spinner when done
+    // regardless of success or failure
+    setIsLoading(false);
+  }
+};
 
   return (
     <div style={{ maxWidth: '500px', margin: '0 auto', padding: '20px' }}>

@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { Tooltip } from 'react-tooltip';
-import 'react-tooltip/dist/react-tooltip.css';
+import { Tooltip } from 'react-tooltip';               
+import 'react-tooltip/dist/react-tooltip.css'; 
 import SwipeRight from './swipe-right';
 import './data-vis-ransomware.css';
 
@@ -49,7 +49,7 @@ interface StatCardProps {
 }
 
 // shorthand month names for more compact display
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 // lookup table to convert country codes to full country names for asean countries
 const countries: Record<string, string> = {
@@ -73,8 +73,8 @@ const StatCard: React.FC<StatCardProps> = ({ emoji, label, count, source = 'US',
   // pick the right emoji based on what type of stat this is
   const icon =
     label === 'Victims Since 2020' ? '⚔️' :
-      label === 'This Month' ? '🌕' :
-        label === 'This Year' ? '☀️' : emoji;
+    label === 'This Month' ? '🌕' :
+    label === 'This Year' ? '☀️' : emoji;
 
   return (
     <div className="stat-card">
@@ -111,7 +111,7 @@ const getAllWeeksInYear = (year: number): Week[] => {
   // start with the first sunday of the year (or last sunday of previous year)
   const curr = new Date(year, 0, 1);
   while (curr.getDay() !== 0) curr.setDate(curr.getDate() - 1);
-
+  
   // keep adding weeks until we go past the end of the requested year
   while (curr.getFullYear() <= year) {
     const start = new Date(curr);
@@ -119,7 +119,7 @@ const getAllWeeksInYear = (year: number): Week[] => {
     mid.setDate(mid.getDate() + 3); // use wednesday (day 3) as middle of week for more accurate month labeling since some weeks cross month boundaries
     curr.setDate(curr.getDate() + 6); // go to saturday to complete the week, needed to properly calculate week ranges
     const end = new Date(curr);
-
+    
     // only include weeks that overlap with the requested year
     if (end.getFullYear() >= year && start.getFullYear() <= year) {
       weeks.push({
@@ -180,11 +180,11 @@ const DataVis: React.FC = () => {
   const processWeeklyData = (data: RansomwareAttack[]) => {
     const year = new Date().getFullYear();
     const allWeeks = getAllWeeksInYear(year);
-
+    
     // initialize counts for all weeks of the year
     const counts: Record<string, number> = {};
     allWeeks.forEach(wk => { counts[wk.label] = 0; });
-
+    
     // count attacks for each week
     data.forEach(item => {
       const d = new Date(item.published);
@@ -193,19 +193,19 @@ const DataVis: React.FC = () => {
         counts[key] = (counts[key] ?? 0) + 1;
       }
     });
-
+    
     // organize the data by month for the heatmap
     const result: HeatmapByMonth = {};
     months.forEach(mn => {
       // find weeks for this month, sorted by week number, max 4 weeks per month
-      const weeksForMonth = allWeeks.filter(wk => wk.label.startsWith(mn)).sort((a, b) => a.weekOfMonth - b.weekOfMonth).slice(0, 4);
+      const weeksForMonth = allWeeks.filter(wk => wk.label.startsWith(mn)).sort((a,b) => a.weekOfMonth - b.weekOfMonth).slice(0,4);
       result[mn] = weeksForMonth.map(wk => ({
         label: `W${wk.weekOfMonth}`,
         count: counts[wk.label] ?? 0,
         fullLabel: wk.label,
         dates: `${wk.start.toLocaleDateString()} - ${wk.end.toLocaleDateString()}`,
       }));
-
+      
       // add placeholder weeks if needed to ensure each month has 4 weeks
       while (result[mn].length < 4) {
         const idx = result[mn].length + 1;
@@ -218,7 +218,7 @@ const DataVis: React.FC = () => {
         });
       }
     });
-
+    
     setHeatmapByMonth(result);
     setIsLoading(false);
   };
@@ -268,9 +268,9 @@ const DataVis: React.FC = () => {
    */
   const renderHorizontalHeatmap = () => {
     // split 12 months into two rows of 6 for better layout on different screen sizes
-    const firstRow = months.slice(0, 6);    // jan through jun
+    const firstRow = months.slice(0,6);    // jan through jun
     const secondRow = months.slice(6);     // jul through dec
-
+    
     return (
       <>
         {/* create two separate rows of months */}
@@ -281,7 +281,7 @@ const DataVis: React.FC = () => {
               <div key={mn} className="month-container">
                 {/* display month name at top */}
                 <div className="month-label">{mn}</div>
-
+                
                 {/* container for all weeks in this month */}
                 <div className="weeks-container">
                   {/* get weeks for this month or use empty array if none found */}
@@ -291,11 +291,11 @@ const DataVis: React.FC = () => {
                       {/* the colored box representing a week */}
                       {/* color depends on number of attacks via css class */}
                       <div
-                        className={`week-box ${getWeekLevelClass(wk.count)}`}
-                        data-tooltip-id="heatmap-tooltip"
-                        data-tooltip-content={`${wk.fullLabel}: ${wk.count} attacks`}
-                        data-tooltip-place="top"                  // ← ensure it shows above
-                      />
+                     className={`week-box ${getWeekLevelClass(wk.count)}`}
+                     data-tooltip-id="heatmap-tooltip"
+                     data-tooltip-content={`${wk.fullLabel}: ${wk.count} attacks`}
+                     data-tooltip-place="top"                  // ← ensure it shows above
+                  />
                       {/* label below each box (W1, W2, etc) */}
                       <div className="week-label">{wk.label}</div>
                     </div>
@@ -317,30 +317,29 @@ const DataVis: React.FC = () => {
     <div className="data-vis-container">
       <Tooltip id="heatmap-tooltip" />
       {/* main title banner with warning emoji, had to use inline styling to force a specific style */}
-      <div className="bg-[#fdf6e3] border-4 border-[#5b4636] rounded-2xl p-8 shadow-lg max-w-6xl w-full text-[#5b4636]">
-        <h1
-          style={{
-            display: 'block',
-            width: 'full',
-            margin: '0.5rem auto 0',
-            // backgroundColor: 'rgba(255,255,255,0.75)',
-            padding: '0.5rem 0.5rem',
-            borderRadius: '0.25rem',
-          }}
-          className="text-4xl text-[#5b4636] text-center tracking-wide uppercase"
-        >
-          ⚠️ASEAN RANSOMWARE ATTACKS⚠️
-        </h1>
-
-        {/* stats section with three key metrics about attacks */}
-        <div className="card-container">
-          <StatCard emoji="🌕" label="This Month" count={getThisMonthCount(ransomData)} description="Ransomware attacks reported in ASEAN this month" />
-          <StatCard emoji="⚔️" label="Victims Since 2020" count={ransomData.length} source={getLatestCountry(ransomData)} />
-          <StatCard emoji="☀️" label="This Year" count={getThisYearCount(ransomData)} description="Ransomware incidents recorded across ASEAN in 2025" />
-        </div>
+      <h1
+        style={{
+          display: 'block',
+          width: 'fit-content',
+          margin: '0.5rem auto 0',
+          backgroundColor: 'rgba(255,255,255,0.75)',
+          padding: '0.5rem 0.5rem',
+          borderRadius: '0.25rem',
+        }}
+        className="text-4xl text-[#5b4636] tracking-wide uppercase"
+      >
+        ⚠️ASEAN RANSOMWARE ATTACKS⚠️
+      </h1>
+      
+      {/* stats section with three key metrics about attacks */}
+      <div className="card-container">
+        <StatCard emoji="🌕" label="This Month" count={getThisMonthCount(ransomData)} description="Ransomware attacks reported in ASEAN this month" />
+        <StatCard emoji="⚔️" label="Victims Since 2020" count={ransomData.length} source={getLatestCountry(ransomData)} />
+        <StatCard emoji="☀️" label="This Year" count={getThisYearCount(ransomData)} description="Ransomware incidents recorded across ASEAN in 2025" />
       </div>
+      
       {/* heatmap visualization section */}
-      <div className="heatmap-section bg-[#fdf6e3] border-4 border-[#5b4636] rounded-2xl p-8 shadow-lg max-w-6xl w-full text-[#5b4636]">
+      <div className="heatmap-section">
         {/* section title for the heatmap */}
         <h3
           style={{
@@ -352,11 +351,11 @@ const DataVis: React.FC = () => {
             padding: '0.5rem 0.5rem',
             borderRadius: '0.25rem',
           }}
-          className="text-4xl tracking-wide uppercase"
+          className="text-2xl tracking-wide uppercase"
         >
           🏹 Weekly Attack Heatmap 🏹
         </h3>
-
+        
         {/* loading state or rendered heatmap */}
         {isLoading ? (
           <p className="intro-text">loading heatmap data...</p>
@@ -364,7 +363,7 @@ const DataVis: React.FC = () => {
           <div className="heatmap-wrapper">
             {renderHorizontalHeatmap()}
             <Tooltip id="heatmap-tooltip" />
-
+            
             {/* data source attribution with link */}
             <p
               style={{
@@ -387,7 +386,7 @@ const DataVis: React.FC = () => {
             </p>
           </div>
         )}
-
+        
         {/* animated intro text to introduce ransomware */}
         <p className="intro-text animated-text animated-delay-1">
           <a href="https://www.youtube.com/shorts/QHguF0rWamc" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: '#c25d5d', fontWeight: 'bold' }}>
@@ -400,7 +399,7 @@ const DataVis: React.FC = () => {
         <p className="call-text animated-text animated-delay-3">
           Step into our interactive story with real Malaysian cybercrime data so you can better:
         </p>
-
+        
         {/* benefits list that shows what users will gain */}
         <div className="benefits-container">
           <div className="benefit-item">🔍 Spot Danger</div>
@@ -408,9 +407,9 @@ const DataVis: React.FC = () => {
           <div className="benefit-item">🛡️ Level Up</div>
         </div>
       </div>
-
+      
       {/* navigation component that helps users move to next screen */}
-      <div className="bg-[#fdf6e3] border-4 border-[#5b4636] rounded-2xl p-8 shadow-lg max-w-6xl w-full text-[#5b4636]" style={{ marginTop: '2rem' }}><SwipeRight /></div>
+      <div style={{ marginTop: '0.5rem' }}><SwipeRight /></div>
     </div>
   );
 };
