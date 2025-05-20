@@ -5,7 +5,7 @@ export async function POST(req: Request) {
     const input = (await req.json()) as PasswordInput;
 
   try {
-    const res = await fetch("https://ems-royal-updated-password-checker-tm02.hf.space/predict", {
+    const res = await fetch("https://EMS-Royal-final-passwordmodel-tm02.hf.space/predict", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(input),
